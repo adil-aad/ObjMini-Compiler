@@ -1,16 +1,8 @@
-from antlr4 import *
-from ObjMiniLexer import ObjMiniLexer
-from ObjMiniParser import ObjMiniParser
+from codegen import CodeGenerator
 
-def main():
-    input_stream = FileStream("test.objmini")
-    lexer = ObjMiniLexer(input_stream)
-    tokens = CommonTokenStream(lexer)
-    parser = ObjMiniParser(tokens)
+cg = CodeGenerator(vtables, layouts)
 
-    tree = parser.program()
-    print("Parsing successful!")
-    print(tree.toStringTree(recog=parser))
+print("\n--- CODE GENERATION DEMO ---")
 
-if __name__ == "__main__":
-    main()
+obj = cg.gen_new_object("B")
+cg.gen_method_call(obj, "B", "getX")
