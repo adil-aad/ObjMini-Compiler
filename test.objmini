@@ -1,3 +1,24 @@
-class A extends B { }
-class B extends A { }
-main {}
+// Deliverable 1 & 2: Class Definitions and Inheritance
+class Animal {
+    public int age;
+    
+    public void eat() { }
+    public void sleep() { }
+}
+
+// Deliverable 3 & 4: Overriding and Memory Layout
+class Dog extends Animal {
+    public int breedId; // New field (Offset should follow Animal's age)
+
+    public void eat() { }  // Overrides Animal.eat (Index 0 in VTable)
+    public void bark() { } // New method (Index 2 in VTable)
+}
+
+// Main block for code generation context
+main {
+    {
+        int x;
+        Dog d;
+        d = new Dog();
+    }
+}
